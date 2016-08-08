@@ -12,6 +12,26 @@
         <ul class="nav navbar-nav">
           <li><h4>Bookmarks</h4></li>
         </ul>
+        {%if request.user.is_authenticated%}
+        <ul class="nav navbar-nav">
+          <li {%if section == "dashboard"%}class="active"{%endif%}>
+            <a href="{%url "dashboard"%}">My Dashboard</a>
+          </li>
+        </ul>
+        {%endif%}
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            {%if request.user.is_authenticated%}
+              Hello {{request.user.first_name}},
+          </li>
+          <li>
+              <a href="{%url "logout"%} ">Logout</a>
+          </li>
+            {%else%}
+              <a href="{%url "login"%}">Login</a>
+            {%endif%}
+          </li>
+        </ul>
       </div>
     </nav>
     <p style="padding:10px;"></p>
